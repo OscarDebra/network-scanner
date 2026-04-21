@@ -14,4 +14,4 @@ Flask is quite lightweight, which can be important when running on a weak comput
 
 # Why React
 
-I have developed before in react, so i'm decently familiar. I picked it for the ease of use with react being component-based and live-updating. It's also lighter, and closer to standard HTML than frameworks like angular, which makes it easier to adopt.
+I have developed before in react, so i'm decently familiar. I picked it for the ease of use with react being component-based and live-updating. It's also lighter, and closer to standard HTML than frameworks like angular, which makes it easier to adopt based on my previous experience.
