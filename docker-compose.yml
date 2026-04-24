@@ -5,6 +5,7 @@ services:
     user: root
     ports:
       - "5000:5000"
+    network_mode: host
     environment:
       - SECRET_KEY=change-this-in-production
     restart: unless-stopped
