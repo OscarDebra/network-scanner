@@ -1,4 +1,3 @@
-import nmap
 import time
 import ipaddress
 from config import Config
