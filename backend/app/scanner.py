@@ -18,7 +18,7 @@ def is_valid_subnet(subnet: str) -> bool:
 
 def can_scan_now() -> bool:
     global _last_scan_time
-    return (time.time() - _last_scan_time) >= Config.RATE_LIMIT_SECONDS
+    return (time.time() - _last_scan_time) >= Config.RATE_LIMIT
 
 
 def scan_network(subnet: str = None) -> list:
@@ -31,7 +31,7 @@ def scan_network(subnet: str = None) -> list:
         raise ValueError(f"Subnet {subnet} is not allowed.")
 
     if not can_scan_now():
-        wait = int(Config.RATE_LIMIT_SECONDS - (time.time() - _last_scan_time))
+        wait = int(Config.RATE_LIMIT - (time.time() - _last_scan_time))
         raise RateLimitError(f"Please wait {wait}s before scanning again.")
 
     result = subprocess.run(
