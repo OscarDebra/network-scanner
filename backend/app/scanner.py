@@ -5,6 +5,7 @@ from config import Config
 
 _last_scan_time = 0
 
+
 def is_valid_subnet(subnet: str) -> bool:
     #Only allow scanning the configured local subnet
     try:
@@ -14,10 +15,12 @@ def is_valid_subnet(subnet: str) -> bool:
     except ValueError:
         return False
 
+
 def can_scan_now() -> bool:
     #prevent scanning more than once every 30 seconds
     global _last_scan_time
     return (time.time() - _last_scan_time) >= Config.RATE_LIMIT
+
 
 def scan_network(subnet: str = None) -> list:
     global _last_scan_time
