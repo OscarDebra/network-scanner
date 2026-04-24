@@ -7,9 +7,7 @@ This is a fullstack network scanner. The backend is a python flask script that s
 The raspberry pi 3+ has a 64gb thumb drive plugged into it, which is its storage and also contains its OS. The Raspberry Pi is connected via Wifi to the local network.
 
 ## Limitations
-- Hostnames are unresolvable on networks that don't expose reverse DNS
-- MAC vendor lookup is based on the OUI prefix and may show Unknown 
-  for devices using MAC address randomization (modern iOS, Android, Windows)
+- Hostnames are unresolvable on networks that don't expose reverse DNS (like Elvebakken-IM and BakkaIM) for devices using MAC address randomization (modern iOS, Android, Windows)
 - nmap requires root/sudo privileges to read MAC addresses
 - Docker network_mode: host is Linux-only; on macOS the backend must 
   run natively for accurate scanning
@@ -34,5 +32,5 @@ I have developed before in react, so i'm decently familiar. I picked it for the 
 
 # Why SQLite
 
-SQLite is pretty lightweight. Scan data is stored locally on the thumb drive. A full database like PostgreSQL would be unnecessary for a single-user tool with infrequent writes.
+SQLite is pretty lightweight. A full database like PostgreSQL would be unnecessary for a single-user tool with infrequent writes.
 
