@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from config import Config
 from app.scanner import scan_network, RateLimitError
-from app.models import save_scan, get_scan_history
+from app.models import save_scan, get_scan_history, get_db
 
 bp = Blueprint("main", __name__)
 
