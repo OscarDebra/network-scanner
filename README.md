@@ -1,6 +1,8 @@
-# # Network Scanner
+# Network Scanner
 
-This is a fullstack network scanner. The backend is a python flask script that scans for devices on the local network with nmap. The backend is connected to an SQlite database. The frontend is made with react. All this is made to run on a small raspberry-pi 3+, but can be run on most things with more processing power.
+## Architecture
+
+This is a fullstack network scanner. The backend is a python flask script that scans for devices on the local network with nmap. The backend is connected to an SQlite database. The frontend is made with react. All this is made to run on a small raspberry-pi 3+, but can be run on most things with more processing power. Backend and frontend both have their own docker container file. At root is a docker compose to run the project.
 
 ## Physical architecture
 
@@ -10,9 +12,9 @@ The raspberry pi 3+ has a 64gb thumb drive plugged into it, which is its storage
 
 - Hostnames are unresolvable on networks that don't expose reverse DNS (like Elvebakken-IM and BakkaIM) for devices using MAC address randomization (modern iOS, Android, Windows)
 - nmap requires root/sudo privileges to read MAC addresses
-- Docker network_mode: host is Linux-only; on macOS the backend must 
-  run natively for accurate scanning
+- Docker network_mode: host is Linux-only; on macOS the backend must run natively for accurate scanning
 - Database cannot store who triggered scans, the string "user" is hardcoded instead of requiring a login
+- Database is not persistent, stopping the backend container will wipe the whole database
 
 ## Security
 

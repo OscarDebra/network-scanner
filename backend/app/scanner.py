@@ -1,3 +1,13 @@
+"""
+app/scanner.py
+Network scanning logic using nmap via subprocess.
+Calls nmap directly and parses the XML output rather than using the python-nmap wrapper, which has compatibility issues
+with nmap 7.9+.
+
+Requires nmap to be installed on the host system.
+Requires root/sudo privileges to resolve MAC addresses via ARP.
+"""
+
 import subprocess
 import xml.etree.ElementTree as ET
 import time

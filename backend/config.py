@@ -1,3 +1,9 @@
+"""
+config.py
+Configuration settings for the Network Scanner application.
+All environment-specific settings are defined here so they can be changed in one place without touching application logic.
+"""
+
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

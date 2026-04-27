@@ -1,3 +1,15 @@
+"""
+app/routes.py
+REST API endpoints for the Network Scanner.
+
+Endpoints:
+  GET /api/health   - health check
+  GET /api/scan     - trigger a live nmap scan and persist results in the sqlite database
+  GET /api/history  - return the last 10 scans from the database
+  GET /api/devices  - return all devices from the most recent scan
+  GET /api/devices/<ip> - return details for a specific device
+"""
+
 from flask import Blueprint, jsonify, request
 from config import Config
 from app.scanner import scan_network, RateLimitError

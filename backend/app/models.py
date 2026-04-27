@@ -1,3 +1,18 @@
+"""
+app/models.py
+Database access layer using SQLite.
+Handles creation, reading and writing of scan data.
+
+Tables:
+  - scans:         audit log of every scan run
+  - devices:       individual devices found per scan
+  - known_devices: tracks every MAC address ever seen,
+                   used to detect new or untrusted devices
+
+Note: MAC addresses and IP data are considered personal data
+under GDPR and should not be shared or transmitted externally.
+"""
+
 import sqlite3
 import time
 from config import Config

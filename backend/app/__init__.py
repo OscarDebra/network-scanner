@@ -1,3 +1,10 @@
+"""
+app/__init__.py
+Application "factory" for the Flask app.
+Creates and configures the Flask instance, registers blueprints, and initialises the database on startup, 
+through a single create_app() function.
+"""
+
 from flask import Flask
 from flask_cors import CORS
 from config import Config
