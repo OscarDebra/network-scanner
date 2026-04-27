@@ -14,6 +14,7 @@ from flask import Blueprint, jsonify, request
 from config import Config
 from app.scanner import scan_network, RateLimitError
 from app.models import save_scan, get_scan_history, get_db
+import time
 
 bp = Blueprint("main", __name__)
 
@@ -25,15 +26,14 @@ def health():
 
 @bp.route("/api/scan", methods=["GET"])
 def scan():
-    subnet = request.args.get("subnet", None)
     try:
-        devices = scan_network(subnet)
-        save_scan(Config.ALLOWED_SUBNET, devices)
-        return jsonify({
-            "success": True,
-            "count": len(devices),
-            "devices": devices
-        })
+        started_at = time.strftime("%Y-%m-%dT%H:%M:%S")
+        devices = scan_network()
+        finished_at = time.strftime("%Y-%m-%dT%H:%M:%S")
+        save_scan(Config.ALLOWED_SUBNET, devices, started_at, finished_at)
+
+        return jsonify({"success": True, "count": len(devices), "devices": devices})
+
     except ValueError as e:
         return jsonify({"success": False, "error": str(e)}), 400
     except RateLimitError as e:

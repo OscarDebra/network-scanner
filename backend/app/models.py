@@ -58,13 +58,12 @@ def init_db():
     conn.close()
 
 
-def save_scan(subnet, devices):
+def save_scan(subnet, devices, started_at, finished_at):
     """Persist a completed scan and its devices. Returns the scan_id."""
     conn = get_db()
-    now = time.strftime("%Y-%m-%dT%H:%M:%S")
     cur = conn.execute(
         "INSERT INTO scans (started_at, finished_at, subnet, device_count) VALUES (?,?,?,?)",
-        (now, now, subnet, len(devices))
+        (started_at, finished_at, subnet, len(devices))
     )
     scan_id = cur.lastrowid
     for d in devices:
@@ -77,7 +76,7 @@ def save_scan(subnet, devices):
                 INSERT INTO known_devices (mac, first_seen, last_seen)
                 VALUES (?, ?, ?)
                 ON CONFLICT(mac) DO UPDATE SET last_seen=excluded.last_seen
-            """, (d["mac"], now, now))
+            """, (d["mac"], started_at, finished_at))
     conn.commit()
     conn.close()
     return scan_id
