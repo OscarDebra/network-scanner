@@ -28,9 +28,9 @@ def health():
 def scan():
     try:
         started_at = time.strftime("%Y-%m-%dT%H:%M:%S")
-        devices = scan_network()
+        subnet, devices = scan_network()
         finished_at = time.strftime("%Y-%m-%dT%H:%M:%S")
-        save_scan(Config.ALLOWED_SUBNET, devices, started_at, finished_at)
+        save_scan(subnet, devices, started_at, finished_at)
 
         return jsonify({"success": True, "count": len(devices), "devices": devices})
 

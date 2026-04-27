@@ -54,7 +54,7 @@ def scan_network(subnet: str = None) -> list:
         raise Exception(f"nmap error: {result.stderr}")
 
     _last_scan_time = time.time()
-    return parse_nmap_xml(result.stdout)
+    return subnet, parse_nmap_xml(result.stdout)
 
 
 def parse_nmap_xml(xml_output: str) -> list:
