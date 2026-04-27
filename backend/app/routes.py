@@ -45,3 +45,12 @@ def device_detail(ip):
 @bp.route("/api/history")
 def history():
     return jsonify(get_scan_history())
+
+@bp.route("/api/devices")
+def devices():
+    conn = get_db()
+    rows = conn.execute(
+        "SELECT * FROM devices WHERE scan_id = (SELECT MAX(id) FROM scans)"
+    ).fetchall()
+    conn.close()
+    return jsonify([dict(r) for r in rows])

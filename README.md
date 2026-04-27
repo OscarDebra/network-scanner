@@ -1,6 +1,6 @@
-# Network Scanner
+# # Network Scanner
 
-This is a fullstack network scanner. The backend is a python flask script that scans for devices on the local network with nmap. The backend is connected to an SQlite database. The frontend is made with react. All this is made to run on a small raspberry-pi 3+
+This is a fullstack network scanner. The backend is a python flask script that scans for devices on the local network with nmap. The backend is connected to an SQlite database. The frontend is made with react. All this is made to run on a small raspberry-pi 3+, but can be run on most things with more processing power.
 
 ## Physical architecture
 
@@ -12,6 +12,7 @@ The raspberry pi 3+ has a 64gb thumb drive plugged into it, which is its storage
 - nmap requires root/sudo privileges to read MAC addresses
 - Docker network_mode: host is Linux-only; on macOS the backend must 
   run natively for accurate scanning
+- Database cannot store who triggered scans, the string "user" is hardcoded instead of requiring a login
 
 ## Security
 
@@ -19,8 +20,7 @@ The raspberry pi 3+ has a 64gb thumb drive plugged into it, which is its storage
 - Subnet validation ensures only the configured local network can be scanned
 - MAC addresses and IP data are personal data under GDPR — scan history 
   is stored locally and never transmitted externally
-- The tool should only be used on networks you own or have permission to scan. 
-  Unauthorized network scanning is illegal under Norwegian law (straffeloven § 207)
+- The tool should only be used on networks you have permission to scan.
 
 ## Decisions
 
