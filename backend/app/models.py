@@ -8,7 +8,7 @@ def get_db():
     return conn
 
 def init_db():
-    """Create tables if they don't exist. Call this on app startup."""
+    #Create tables if they don't exist. Call this on app startup.
     conn = get_db()
     conn.executescript("""
         CREATE TABLE IF NOT EXISTS scans (
