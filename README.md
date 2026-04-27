@@ -8,6 +8,33 @@ This is a fullstack network scanner. The backend is a python flask script that s
 
 The raspberry pi 3+ has a 64gb thumb drive plugged into it, which is its storage and also contains its OS. The Raspberry Pi is connected via Wifi to the local network.
 
+## Setup for a different network
+
+To run this tool on a different network, update the `ALLOWED_SUBNET`
+variable in `config.py` to match your local subnet:
+
+```python
+ALLOWED_SUBNET = "192.168.1.0/24"  # typical home network
+ALLOWED_SUBNET = "10.0.0.0/24"     # typical office network
+ALLOWED_SUBNET = "172.31.0.0/23"   # this deployment
+```
+
+To find your subnet, run the following command:
+
+Mac/Linux:
+```bash
+ifconfig | grep "inet " | grep -v 127.0.0.1
+```
+
+Windows:
+```bash
+ipconfig
+```
+
+The output will show your IP address and netmask, from which you can
+determine your subnet. For example, an IP of `192.168.1.45` with
+netmask `255.255.255.0` means your subnet is `192.168.1.0/24`.
+
 ## Limitations
 
 - Hostnames are unresolvable on networks that don't expose reverse DNS (like Elvebakken-IM and BakkaIM) for devices using MAC address randomization (modern iOS, Android, Windows)
@@ -15,6 +42,7 @@ The raspberry pi 3+ has a 64gb thumb drive plugged into it, which is its storage
 - Docker network_mode: host is Linux-only; on macOS the backend must run natively for accurate scanning
 - Database cannot store who triggered scans, the string "user" is hardcoded instead of requiring a login
 - Database is not persistent, stopping the backend container will wipe the whole database
+- The API does not accept user-supplied subnet parameters. The subnet is hardcoded in `config.py` and validated in `scanner.py` via `is_valid_subnet()`, this is deliberate because it prevents the tool from scanning subnets that are not validated by the operator. to change the subnet to your own, change the ALLOWED_SUBNET variable in config.py, make sure you have permission to scan on that network first.
 
 ## Security
 
