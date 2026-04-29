@@ -11,8 +11,8 @@
  */
  
 import React, { useState } from 'react';
-import WelcomeScreen from './components/WelcomeScreen';
-import DeviceTable from './components/DeviceTable';
+import WelcomeScreen from './components/welcome-screen';
+import DeviceTable from './components/device-table';
 import { fetchScan } from './api';
  
 export default function App() {
