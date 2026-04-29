@@ -1,5 +1,5 @@
 /**
- * DeviceTable.js
+ * device-table.js
  * Displays the list of devices found in the most recent scan.
  * Columns ordered by priority: Hostname, Status, IP, MAC, Vendor.
  */

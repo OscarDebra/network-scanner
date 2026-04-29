@@ -1,5 +1,5 @@
 /**
- * WelcomeScreen.js
+ * welcome-screen.js
  * Landing screen shown on first load.
  * Displays a scan button and backend health status.
  */

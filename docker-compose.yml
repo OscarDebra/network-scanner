@@ -13,8 +13,7 @@ services:
   frontend:
     build: ./frontend
     container_name: network-scanner-frontend
-    ports:
-      - "80:80"
+    network_mode: host
     depends_on:
       - backend
     restart: unless-stopped

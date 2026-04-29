@@ -1,5 +1,5 @@
 /**
- * App.js
+ * app.js
  * Root component. Manages app state and switches between
  * the WelcomeScreen and DeviceTable views.
  *
