@@ -6,7 +6,7 @@
  
 import React, { useEffect, useState } from 'react';
 import { fetchHealth } from '../api';
-import './WelcomeScreen.css';
+import './welcome-screen.css';
  
 export default function WelcomeScreen({ onScan, scanning }) {
   const [healthy, setHealthy] = useState(null);

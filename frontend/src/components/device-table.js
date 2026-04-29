@@ -5,7 +5,7 @@
  */
  
 import React, { useState } from 'react';
-import './DeviceTable.css';
+import './device-table.css';
  
 export default function DeviceTable({ devices, scanMeta, onRescan, scanning }) {
   const [filter, setFilter] = useState('');
